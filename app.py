@@ -22,7 +22,22 @@ def is_even():
     else:
         return jsonify(result=False)
 
+@app.route("/is_odd")
+def is_even():
+    number = request.args.get('number')
 
+    if number is None:
+        return jsonify(error="Enter number="), 400
+
+    if not number.isnumeric():
+        return jsonify(error="Input needs to be a numeric value"), 400)
+
+    number = int(number)
+
+    if number % 2 != 0:
+        return jsonify(result=True)
+    else:
+        return jsonify(result=False)
 
 
 app.run(port=5000, debug=True)
